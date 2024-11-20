@@ -1,0 +1,14 @@
+{% block header %}
+    {% include 'navbar2.html' %}
+{% endblock %}
+
+{% block content %}  
+  {% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }}</h1> 
+  {% endfor %}
+  
+
+    <div class="container-fluid  text-center ">
+      test
+    </div>
+{% endblock %}

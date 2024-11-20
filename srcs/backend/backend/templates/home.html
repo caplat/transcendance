@@ -1,0 +1,47 @@
+{% block header %}
+    {% include 'navbar2.html' %}
+{% endblock %}
+
+{% block content %}  
+  {% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }}</h1> 
+  {% endfor %}
+  
+  <div>
+    <form>
+    <div class="container-fluid  text-center ">
+      <div class="row">     
+        <div class="col-img col-sm-6 col-md-6 col-lg-4 py-2 px-0 mx-0">
+          <div class="row"> 
+            <h3 data-translate="games"> Games </h3>
+            <a href="#" class="choose-img">
+                <img id="games" src="../static/img/game.png" width="100%" atl="games"/>
+            </a>
+          
+          </div>
+        </div> 
+        
+        <div class="col-img col-sm-6 col-md-6 col-lg-4 py-2 px-0 mx-0">
+          <div class="row"> 
+            <h3 data-translate="profile"> Profile </h3>
+            <a href="#" class="choose-img">
+            <img id="user/profile/{{user.username}}" src="../static/img/profil.png" width="100%" atl="profil">
+            </a>
+          </div>
+        </div>
+
+        <div class="col-img col-sm-6 col-md-6 col-lg-4 py-2 px-0 mx-0">
+          <div class="row"> 
+             <h3 data-translate="logout"> Logout </h3>
+            <a href="#" class="choose-img">
+              <img id="user/logout" src="../static/img/logout.png" width="100%" atl="logout">
+            </a>
+          </div>
+        </div>
+      
+      </div>    
+    </div>
+
+    </form>
+  </div>
+{% endblock %}

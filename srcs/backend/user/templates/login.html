@@ -1,0 +1,22 @@
+{% block header %}
+    {% include 'navbar1.html' %}
+{% endblock %}
+
+{% block content %}
+    {% for message in messages %}
+        <h1 class="fs-1 text-warning">{{ message }}</h1>
+    {% endfor %}
+
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <h1 data-translate="login">Log in</h1>
+            <form method="post" enctype="multipart/form-data" id="user/login/">
+                {%  csrf_token %}
+                <input id="a" type="text" name="username" placeholder="Enter your name">
+                <br><br>
+                <input id="b" type="password" name="password" placeholder="Enter your password">
+                <br><br>
+                <button id="home" data-translate="enter" class="btn btn-outline-success btn-sm" type="submit">Enter</button>
+            </form>
+    </div> 
+  
+{% endblock %}

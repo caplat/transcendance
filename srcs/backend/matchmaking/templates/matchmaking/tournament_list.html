@@ -1,0 +1,32 @@
+{% block header %}
+{% include 'navbar2.html' %}
+{% endblock %}
+
+{% block content %}
+{% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }}</h1>
+{% endfor %}
+
+<div class="container-fluid content-center text-center py-4">
+    <div>
+    <h3>Tournament List</h1>
+    <!-- <div> -->
+        <br>
+        {% for tournament in tournaments %}
+            <!-- <a href="{% url 'tournament_detail' tournament.id %}">{{ tournament.name }}</a> -->
+            <!-- <a role="button" data-translate="" class=" list-group-item btn btn-outline-success btn-sm" href="#" id="matchmaking/tournament/{{ tournament.id }}">{{ tournament.name }}</a> -->
+            <a role="button" data-translate="" class="btn btn-outline-dark btn-warning m-2" href="#" id="matchmaking/tournament/{{ tournament.id }}">{{ tournament.name }}</a>
+        {% empty %}
+            <p>No tournaments available.</p>
+        {% endfor %}
+    </div>
+    
+    <br>
+    <div>
+        <a href="#" id="matchmaking/tournament/create" class="btn btn-outline-dark btn-sm">Create a New Tournament</a>
+    </div>
+        
+</div>
+{% endblock %}
+
+

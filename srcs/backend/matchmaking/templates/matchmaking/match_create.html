@@ -1,0 +1,25 @@
+{% block header %}
+{% include 'navbar2.html' %}
+{% endblock %}
+
+{% block content %}
+{% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }}</h1>
+{% endfor %}
+<div class="container-fluid text-center ">
+    <h2>Create a New Match for {{ tournament.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Affiche les champs du formulaire sous forme de paragraphes -->
+        <!-- <input type="submit" value="Save Match"> -->
+        <button type="submit" id="matchmaking/tournament/{{ tournament.id }}" class="btn btn-outline-dark btn-warning">Save Match</button>  
+
+    </form>
+
+    <br>
+    <!-- <a href="{% url 'create_participants' tournament.id %}">Create Participants</a> -->
+    <a href="#" id="matchmaking/tournament/{{tournament.id}}/participants" class="btn btn-outline-dark btn-sm m-2">Create Participants</a>
+    <!-- <a href="{% url 'tournament_detail' tournament.id %}">Back to Tournament Details</a> -->
+    <a role="button" data-translate="" class="btn btn-outline-dark btn-sm m-2" href="#" id="matchmaking/tournament/{{ tournament.id }}">Back to Tournament Details</a>
+</div>
+{% endblock %}

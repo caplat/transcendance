@@ -1,0 +1,26 @@
+{% block header %}  
+  {% include 'navbar2.html' %}
+{% endblock %}
+
+{% block content %}  
+  {% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }}</h1>
+  {% endfor %}
+  
+  
+    <div class="container-fluid text-center ">
+      <h2 data-translate="tournament">Tournament</h2> 
+        <!-- <div class="row" >    
+            <div class="col" onload="draw();">     
+                <canvas id="window_game"> test</canvas>
+            </div>
+        </div> -->
+        <br>
+        <div>
+          <a href="#" id="matchmaking/tournament" class="btn btn-outline-dark btn-warning btn-sm m-2">Tournament List</a>
+          <a href="#" id="matchmaking/tournament/create" class="btn btn-outline-dark btn-warning btn-sm m-2">Create Tournament</a>
+        </div>
+        
+    </div>
+
+{% endblock %}

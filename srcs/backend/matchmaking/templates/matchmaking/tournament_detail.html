@@ -1,0 +1,80 @@
+{% block header %}
+{% include 'navbar2.html' %}
+{% endblock %}
+
+{% block content %}
+{% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }}</h1>
+{% endfor %}
+<div class="container-fluid content-center text-center py-4">
+    <h2>Tournoi : {{ tournament.name }}</h2>
+    <br>    
+    <div>
+        <h3>Participants</h3>
+        {% for participant in participants %}
+            <a class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover m-4" href="#" id="user/profile/{{ participant.user.username }}">{{ participant.user.username }}</a>
+        {% empty %}
+            <p>No participants yet.</p>
+        {% endfor %}
+    </div>
+
+    <br>
+    <div>
+        <h3>Matches</h3>
+        <ul class="list-group">
+            {% for match in matches %}
+                <li class="list-group-item">
+                    {{ match.participant1.nickname }} vs {{ match.participant2.nickname }}
+                    {% if match.is_completed %}
+                        - Score: {{ match.participant1_score }} - {{ match.participant2_score }}
+                    {% else %}
+                        - En attente de résultat
+                    {% endif %}
+                </li>
+            {% empty %}
+                <p>No matches yet.</p>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <br>
+
+    {% if is_user_registered %}
+        <!-- Formulaire de désinscription -->
+        <form method="POST" enctype="multipart/form-data" id="form-unsubscribe">
+            {% csrf_token %}
+            <button type="submit" name="unsubscribe" class="btn btn-outline-dark btn-danger btn-sm m-2">Se désinscrire</button>
+        </form>
+    {% else %}
+        <!-- Formulaire d'inscription -->
+        <form method="POST" enctype="multipart/form-data" id="form-subscribe">
+            {% csrf_token %}
+            <label for="nickname">Pseudo : </label>
+            <input type="text" id="nickname" name="nickname" required>
+            <button type="submit" name="subscribe" class="btn btn-outline-dark btn-warning btn-sm m-2">S'inscrire</button>
+        </form>
+    {% endif %}
+
+    {% if is_creator %}
+        <form method="POST" id="form-delete-tournament">
+            {% csrf_token %}
+            <input type="hidden" name="delete_tournament" value="true">
+            <button type="submit" class="btn btn-outline-dark btn-danger btn-sm m-2">Supprimer le tournoi</button>
+        </form>
+    {% endif %}
+
+    {% if is_creator and not tournament.is_locked %}
+        <form method="post" id="lock-tournament-form">
+            {% csrf_token %}
+            <button type="submit" name="lock_tournament" class="btn btn-outline-dark btn-warning btn-sm m-2">
+                Verrouiller le tournoi
+            </button>
+        </form>
+    {% elif tournament.is_locked %}
+        <p>Ce tournoi est verrouillé. Les inscriptions sont fermées.</p>
+    {% endif %}
+
+    <a href="#" id="matchmaking/tournament" class="btn btn-outline-dark btn-warning btn-sm m-2">Back to Tournament List</a>
+</div>
+{% endblock %}
+

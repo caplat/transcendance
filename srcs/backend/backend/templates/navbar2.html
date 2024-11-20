@@ -1,0 +1,43 @@
+{% block header %}
+    
+<nav class="navbar navbar-expand-lg bg-warning navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index' %}">PONG</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active btn" aria-current="page" id="home" data-translate="home">Home</a>
+          </li>
+     
+          <li class="nav-item">
+            <a class="nav-link btn" id="games" data-translate="games">Game</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-translate= "user">
+              User
+            </a>
+            <ul class="dropdown-menu bg-warning-subtle">
+              <li><a class="dropdown-item btn" id="user/profile/{{user.username}}" data-translate="profile">Profile</a></li>
+              <li><a class="dropdown-item btn" id="user/friends" data-translate="friends">Friends</a></li>
+              <!-- <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'settings' %}" data-translate="settings">Settings</a></li> -->
+            </ul>
+          </li>
+          
+        </ul>
+        <div class="container-fluid  text-center col-md-4 "><h2 > {{user.username}}</h2></div>
+        
+        <div class="langs">
+          <a id="user/logout" href="#" class="btn btn-primay m-3">Logout</a>
+          <a class="btn btn-dark active" onclick="toggleLanguage('en')" language="english">EN</a>
+          <a class="btn btn-dark" onclick="toggleLanguage('fr')" language="french">FR</a>
+          <a class="btn btn-dark" onclick="toggleLanguage('es')" language="spanish">ES</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+    
+{% endblock %}

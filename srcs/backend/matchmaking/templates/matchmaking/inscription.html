@@ -1,0 +1,32 @@
+<!-- {% block header %}
+{% include 'navbar2.html' %}
+{% endblock %}
+
+{% block content %}
+{% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }}</h1>
+{% endfor %}
+
+<div class="container-fluid text-center ">
+    <h2>Create Participants for Tournament: {{ tournament.name }}</h2>
+    
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            {% for user in users %}
+                <input type="checkbox" name="users" value="{{ user.id }}">
+                {{ user.username }}
+                <br>
+                
+            {% endfor %}
+        </div>  
+        <br>
+        <button type="submit" id="matchmaking/tournament/{{ tournament.id }}" class="btn btn-outline-dark btn-warning">Add Selected Participants</button>  
+    </form>
+
+    <br>
+    <a role="button" data-translate="" class="btn btn-outline-dark btn-sm m-2" href="#" id="matchmaking/tournament/{{ tournament.id }}">Back to Tournament Details</a>
+    <a href="{% url 'tournament_detail' tournament.id %}">Back to Tournament Details</a> -->
+<!-- </div>
+{% endblock %} -->

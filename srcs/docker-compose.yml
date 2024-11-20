@@ -1,0 +1,67 @@
+# docker-compose.yml
+services:
+  django:
+    image: django
+    build:
+      context: ./django
+    hostname: django
+    container_name: django
+    ports:
+      - "8000:8000"
+    volumes:
+      - "backend:/backend"
+    depends_on:
+      - postgresql
+      - redis
+    networks:
+      - network_42
+    restart: always
+    environment:
+      DJANGO_SUPERUSER_USERNAME: ${DJANGO_SUPERUSER_USERNAME}
+      DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL}
+      # DJANGO_SUPERUSER_USERNAME2: ${DJANGO_SUPERUSER_USERNAME2}
+      # DJANGO_SUPERUSER_EMAIL2: ${DJANGO_SUPERUSER_EMAIL2}
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD}
+    env_file:
+      - ".env"
+    
+  postgresql:
+    image: postgresql
+    build:
+      context: ./postgresql
+    hostname: postgresql
+    container_name: postgresql
+    volumes:
+      - "postgresql_data:/var/lib/postgresql/data/"
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    networks:
+      - network_42
+    restart: always
+
+  redis:
+    image: redis
+    container_name: redis
+    volumes:
+      - "redis_data:/data"
+    ports:
+      - "6378:6379"
+    networks:
+      - network_42
+    restart: always
+
+networks:
+  network_42:
+
+volumes:
+  postgresql_data:
+    name: "postgresql_data"
+  redis_data:
+    name: "redis_data"
+  backend:
+    name: "backend"
+    driver: local
+    driver_opts:
+      type: none
+      device: ./backend
+      o: bind

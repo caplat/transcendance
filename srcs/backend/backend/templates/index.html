@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'navbar1.html' %}
+{% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }} {{user.username}}</h1>
+{% endfor %}
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div class=" form container-fluid content-right text-center"> 
+            <h1 class="col-12 text-danger-emphasis fw-bold" id="first_page" data-translate="welcome">Welcome</h1>
+            <h4 class="text-warning-emphasis" data-translate="welcome2">For try the experience, log in</h4> 
+            <br><br><br>
+            <a id="user/register" data-translate="register" class="btn btn-outline-success btn-sm" >Register</a>
+            <a id="user/login" data-translate="login"class="btn btn-outline-success btn-sm">Login</a>
+            <a id="login42/auth" data-translate="login42" class="btn btn-outline-success btn-sm">Login with 42</a>
+        </div>
+    </div>  
+{% endblock %}              
+ 

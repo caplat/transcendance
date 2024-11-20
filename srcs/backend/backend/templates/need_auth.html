@@ -1,0 +1,11 @@
+{% block content %}  
+    {% for message in messages %}
+        <h1 class="fs-1 text-warning">{{ message }}</h1>
+    {% endfor %}
+  
+    <div class="container-fluid text-center ">
+        <h2 data-translate="returnlogin">Log in to enjoy our games</h2>
+        <a id=" " data-translate="returnlogin" class="btn btn-warning m-3" >Return to login</a>
+    </div>
+
+{% endblock %}

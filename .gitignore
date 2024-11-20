@@ -1,0 +1,9 @@
+.venv
+.env
+
+srcs/backend/img/img/*
+!srcs/backend/img/img/profil.png
+
+__pycache__
+node_modules/
+*.json

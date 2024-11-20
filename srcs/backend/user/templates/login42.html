@@ -1,0 +1,17 @@
+{% block header %}
+    {% include 'navbar1.html' %}
+{% endblock %}
+
+{% block content %}
+    {% for message in messages %}
+        <h1 class="fs-1 text-warning">{{ message }}</h1>
+    {% endfor %}
+
+    <div class="position-absolute top-50 start-50 translate-middle">
+        
+        <p>
+            pas sure que tu es besoin de cette page
+        </p>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,22 @@
+{% block header %}
+    {% include 'navbar2.html' %}
+{% endblock %}
+
+{% block content %}
+{% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }}</h1>
+{% endfor %}
+
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="position-absolute top-50 start-50 translate-middle"></div>
+            <form method="POST" enctype="multipart/form-data" id="user/updateProfile/">
+                {%  csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" data-translate="update" class="btn btn-outline-success btn-sm">Update</button>
+                <br><br>
+                <a role="button" data-translate="changePassword" class="btn btn-outline-success btn-sm" id="user/pass"> Change password</a>
+                <a role="button" data-translate="deleteProfile" class="btn btn-outline-danger btn-sm"  id="user/delete_profile/{{user.id}}" >Delete profile</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

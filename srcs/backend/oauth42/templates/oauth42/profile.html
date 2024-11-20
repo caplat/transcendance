@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Profile</h1>
+
+    <div class="profile-info">
+        <p><strong>Username:</strong> {{ user_profile.username }}</p>
+        <p><strong>ID 42:</strong> {{ user_profile.id_42 }}</p>
+        <p><strong>Email:</strong> {{ user_profile.email }}</p>
+        <p><strong>First Name:</strong> {{ user_profile.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user_profile.last_name }}</p>
+        <p><strong>Profile Picture:</strong></p>
+        {% if user_profile.profile_picture %}
+            <img src="{{ user_profile.profile_picture }}" alt="Profile Picture" style="width: 150px; height: 150px;">
+        {% else %}
+            <p>No profile picture available.</p>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'home' %}">Go back to Home</a>
+</body>
+</html>

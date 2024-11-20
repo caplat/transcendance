@@ -1,0 +1,49 @@
+{% block header %}  
+  {% include 'navbar2.html' %}
+{% endblock %}
+
+{% block content %}  
+    {% for message in messages %}
+    <h1 class="fs-1 text-warning">{{ message }}</h1>
+     {% endfor %}
+  
+<h2 class="fw-bold text-uppercase text-decoration-underline" data-translate="{{ game_type }}">{{ game_type }}</h2> 
+<br>
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col" onload="draw();">
+            <form method="post" enctype="multipart/form-data" id="games/list/" class="{{ game_type }}">
+                <!-- <form method="post" enctype="multipart/form-data" id="games/{{ game_type }}/1"> -->
+                {%  csrf_token %}
+                
+                <button id="games/{{ game_type }}/"  data-translate="enter" class="btn btn-outline-success btn-sm" type="submit">New game</button>
+            </form>
+            <!-- <a id="games/{{ game_type }}/1" class="btn fs-3 btn-outline-success btn-sm">Nouvelle partie</a> -->
+            <br><br>
+            <h3 >Rejoindre partie</h3>
+            <ul>
+                {% for game in games %}
+                {% if game.state == 'load' %}
+                    <li>
+                        <a id="games/{{ game_type }}/{{ game.room_id }}" class="btn fs-4 btn-outline-success btn-sm">Partie {{ game.room_id }}</a>
+                    </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <br>
+            <h3>Regarder partie</h3>
+            <ul>
+                {% for game in games %}
+                {% if game.state == 'start' %}
+                    <li>
+                        <a id="games/{{ game_type }}/{{ game.room_id }}" class="btn fs-4 btn-outline-success btn-sm">Partie {{ game.room_id }}</a>
+              <!-- <a href="{% url game_type  game.room_id %}">
+                <h4>Partie {{ game.room_id }}</h4> -->
+                    </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
